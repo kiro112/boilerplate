@@ -1,12 +1,14 @@
 'use strict';
 
-// const importer = require('anytv-node-importer');
+const importer = require('anytv-node-importer');
 
 module.exports = (router) => {
-    // const __ = importer.dirloadSync(__dirname + '/../controllers');
+    const __ = importer.dirloadSync(__dirname + '/../controllers');
 
     router.del = router.delete;
 
+
+    router.post('/auth',    __.auth.login);
 
 
 

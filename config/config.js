@@ -13,6 +13,8 @@ const config = {
 
         PORT: 8000,
 
+        SALT: 'C2H6O',
+
         CORS:  {
             allowed_headers: 'Access-Token, X-Requested-With, Content-Type, Accept',
             allowed_origins: '*',
@@ -58,5 +60,4 @@ if (!process.env.NODE_ENV) {
     process.env.NODE_ENV = 'development';
 }
 
-console.log(process.env.NODE_ENV);
 module.exports = config.use(process.env.NODE_ENV);

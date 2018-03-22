@@ -21,3 +21,7 @@ sblm.sublime-workspace
 config/env/*
 
 .idea
+
+# Remove this on production
+# we should not install apidoc package in prod
+apidoc

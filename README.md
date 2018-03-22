@@ -9,7 +9,6 @@ Requirements
 ## Running the application
 1. Download zip
 2. Create the Database
-  - Declare the *DB_USER* and *DB_PWD* variables
   ```sh
   $ mysql -uroot < database/schema.sql
   $ mysql -uroot < database/stored_procedures.sql

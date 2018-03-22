@@ -5,10 +5,10 @@
   "main": "index.js",
   "scripts": {
     "dev-server": "grunt",
-    "test": "grunt test",
+    "test": "snyk test && grunt test",
     "dev-tests": "grunt dev-tests",
     "coverage": "unset NODE_ENV && istanbul cover _mocha -- --recursive -R spec -t 5000 -s 100",
-    "docs": "apidoc -i controllers -o apidoc/"
+    "docs": "apidoc -i controllers -o assets/apidoc/"
   },
   "repository": {
     "type": "git",
@@ -22,6 +22,7 @@
   "homepage": "https://github.com/kiro112/test12#readme",
   "dependencies": {
     "anytv-node-cors": "0.0.7",
+    "anytv-node-error-handler": "0.0.10",
     "anytv-node-importer": "0.0.7",
     "anytv-node-mysql": "0.0.56",
     "app-module-path": "^2.2.0",
@@ -50,6 +51,12 @@
     "node-mocks-http": "^1.5.8",
     "nodemon": "^1.17.2",
     "nsp": "^3.2.1",
-    "snyk": "^1.70.2"
+    "should": "^13.2.1",
+    "snyk": "^1.70.2",
+    "supertest": "^3.0.0"
+  },
+  "apidoc": {
+    "title": "RESTful API boilerplate documentation",
+    "url": "http://localhost:8000"
   }
 }
