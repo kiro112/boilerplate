@@ -9,11 +9,9 @@ const config = {
     // can be overridden by ${env}/app.js
     app: {
 
-        APP_NAME: 'CDI Boilerplate',
+        APP_NAME: 'CDI Node Boilerplate',
 
-        PORT: 8000,
-
-        SALT: 'C2H6O',
+        PORT: 5000,
 
         CORS:  {
             allowed_headers: 'Access-Token, X-Requested-With, Content-Type, Accept',
@@ -30,11 +28,11 @@ const config = {
 
     // can be overridden by ${env}/database.js
     database: {
-        MY_DB: {
-            host:       'localhost',
-            user:       '',
-            password:   '',
-            database:   ''
+        LOCAL_DB: {
+            host: 'localhost',
+            user: 'root',
+            password: '',
+            database: 'test'
         }
     },
 

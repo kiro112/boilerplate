@@ -1,14 +1,10 @@
-CREATE DATABASE IF NOT EXISTS `db_name`;
+DROP DATABASE IF EXISTS test;
 
-USE `db_name`;
+CREATE DATABASE IF NOT EXISTS test;
+USE test;
 
-DROP TABLE IF EXISTS `user`;
-CREATE TABLE `user` (
-    `id`                CHAR(36)        PRIMARY KEY     NOT NULL,
-    `username`          VARCHAR(64)     NOT NULL,
-    `password`          VARCHAR(64)     NOT NULL,
-    `created`           DATETIME        NOT NULL        DEFAULT CURRENT_TIMESTAMP,
-    `updated`           DATETIME        NOT NULL        DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP,
-    `deleted`           DATETIME        NOT NULL        DEFAULT '0000-00-00 00:00:00',
-    UNIQUE KEY `uniq_username`  (`username`, `deleted`)
-) ENGINE = InnoDB DEFAULT CHARSET=utf8mb4;
+CREATE TABLE IF NOT EXISTS users (
+    user_id VARCHAR(37) PRIMARY KEY,
+    date_created TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    date_updated DATETIME DEFAULT NULL
+) ENGINE=InnoDB;

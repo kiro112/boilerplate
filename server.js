@@ -2,22 +2,23 @@
 
 require('app-module-path/register');
 
-const mysql       = require('anytv-node-mysql');
+const mysql = require('anytv-node-mysql');
+const logger = require('helpers/logger');
+const config = require('config/config');
 const body_parser = require('body-parser');
-const express     = require('express');
-const winston     = require('winston');
-const morgan      = require('morgan');
-// const swaggerUi   = require('swagger-ui-express');
-// const swaggerDocument = require('./swagger.json');
-
-const config      = require('config/config');
-const logger      = require('helpers/logger');
+const express = require('express');
+const morgan = require('morgan');
 
 let handler;
 let app;
 
 
+
 function start () {
+
+    if (handler) {
+        handler.close();
+    }
 
     // create express app
     app = express();
@@ -27,34 +28,32 @@ function start () {
     app.set('env', config.app.ENV);
 
     // configure mysql
-    mysql
-        .set_logger(winston)
-        .add('my_db', config.database.MY_DB, true);
-
-    winston.info('Starting', config.app.APP_NAME, 'on', config.app.ENV, 'environment');
+    mysql.set_logger(logger)
+        .add('my_db', config.database.LOCAL_DB, true);
 
     // configure express app
     app.set('case sensitive routing', true);
     app.set('x-powered-by', false);
 
-    winston.verbose('Binding 3rd-party middlewares');
+    logger.error(`this is a error in  ${config.app.APP_NAME}`);
+    logger.info({ messxage: 'test JSON' });
+
+    logger.verbose('Binding 3rd-party middlewares');
     app.use(morgan('combined', {stream: {write: logger.info}}));
-    // app.use('/swagger-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
     app.use(express.static(config.app.ASSETS_DIR));
     app.use(require('method-override')());
     app.use(body_parser.urlencoded({extended: false}));
     app.use(body_parser.json());
     app.use(require('compression')());
-    app.use(require('helmet')());
 
 
-    winston.verbose('Binding custom middlewares');
+    logger.verbose('Binding custom middlewares');
     app.use(require('anytv-node-cors')(config.app.CORS));
     app.use(require('lib/res_extended')());
     app.use(require('config/router')(express.Router()));
-    app.use(require('anytv-node-error-handler')(winston));
+    app.use(require('anytv-node-error-handler')(logger));
 
-    winston.info('Server listening on port', config.app.PORT);
+    logger.info(`Server listening on port ${config.app.PORT}`);
 
     return app.listen(config.app.PORT);
 }
