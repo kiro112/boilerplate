@@ -35,9 +35,6 @@ function start () {
     app.set('case sensitive routing', true);
     app.set('x-powered-by', false);
 
-    logger.error(`this is a error in  ${config.app.APP_NAME}`);
-    logger.info({ messxage: 'test JSON' });
-
     logger.verbose('Binding 3rd-party middlewares');
     app.use(morgan('combined', {stream: {write: logger.info}}));
     app.use(express.static(config.app.ASSETS_DIR));
