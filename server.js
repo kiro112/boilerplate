@@ -3,11 +3,12 @@
 require('app-module-path/register');
 
 const mysql = require('anytv-node-mysql');
-const logger = require('helpers/logger');
-const config = require('config/config');
 const body_parser = require('body-parser');
 const express = require('express');
 const morgan = require('morgan');
+
+const logger = require('helpers/logger');
+const config = require('config/config');
 
 let handler;
 let app;
@@ -29,7 +30,7 @@ function start () {
 
     // configure mysql
     mysql.set_logger(logger)
-        .add('my_db', config.database.LOCAL_DB, true);
+        .add('db_name', config.database.LOCAL_DB, true);
 
     // configure express app
     app.set('case sensitive routing', true);
@@ -47,7 +48,12 @@ function start () {
     logger.verbose('Binding custom middlewares');
     app.use(require('anytv-node-cors')(config.app.CORS));
     app.use(require('lib/res_extended')());
-    app.use(require('config/router')(express.Router()));
+    app.use(require('config/router')(
+        express.Router({
+            caseSensitive: true,
+            strict: true
+        })
+    ));
     app.use(require('anytv-node-error-handler')(logger));
 
     logger.info(`Server listening on port ${config.app.PORT}`);

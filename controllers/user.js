@@ -17,34 +17,36 @@ const logger = require('../helpers/logger');
 exports.get_user = function (req, res, next) {
 
 
-    function start () {
+    res.data({ message: 'test12' }).send();
 
-        mysql.use('my_db')
-            .query(
-                'SELECT * FROM users WHERE user_id = ? LIMIT 1;',
-                [req.params.id],
-                send_response
-            )
-            .end();
-    }
+    // function start () {
+
+    //     mysql.use('my_db')
+    //         .query(
+    //             'SELECT * FROM users WHERE user_id = ? LIMIT 1;',
+    //             [req.params.id],
+    //             send_response
+    //         )
+    //         .end();
+    // }
 
 
-    function send_response (err, result, args, last_query) {
+    // function send_response (err, result, args, last_query) {
 
-        if (err) {
-            logger.error('Error in selecting users', last_query);
-            return next(err);
-        }
+    //     if (err) {
+    //         logger.error('Error in selecting users', last_query);
+    //         return next(err);
+    //     }
 
-        if (!result.length) {
-            return res.status(404)
-                .error({code: 'USER404', message: 'User not found'})
-                .send();
-        }
+    //     if (!result.length) {
+    //         return res.status(404)
+    //             .error({code: 'USER404', message: 'User not found'})
+    //             .send();
+    //     }
 
-        res.item(result)
-            .send();
-    }
+    //     res.item(result)
+    //         .send();
+    // }
 
-    start();
+    // start();
 };
