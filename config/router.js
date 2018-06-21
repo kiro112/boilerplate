@@ -4,13 +4,13 @@ const importer = require('anytv-node-importer');
 const logger = require('../lib/log');
 
 module.exports = (router) => {
-    const __ = importer.dirloadSync('../controllers');
+    const __ = importer.dirloadSync(__dirname + '/../controllers');
 
     router.del = router.delete;
 
-    router.all('*', logger);
 
-    router.get('/user/:id', __.user.get_user);
+    router.get('/user/:id', logger, __.user.get_user);
+    router.post('/user/:id', logger, __.user.get_user);
 
     router.all('*', (req, res) => {
         res.status(404)

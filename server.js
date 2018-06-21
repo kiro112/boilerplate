@@ -42,7 +42,7 @@ function start () {
     app.use(require('method-override')());
     app.use(body_parser.urlencoded({extended: false}));
     app.use(body_parser.json());
-    app.use(require('compression')());
+    // app.use(require('compression')());
 
 
     logger.verbose('Binding custom middlewares');
