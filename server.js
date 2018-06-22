@@ -51,7 +51,10 @@ function start () {
     app.use(require('anytv-node-cors')(config.app.CORS));
     app.use(require('lib/res_extended')());
     app.use(require('config/router')(
-        express.Router()
+        express.Router({
+            caseSensitive: true,
+            strict: true
+        })
     ));
     app.use(require('anytv-node-error-handler')(logger));
 
