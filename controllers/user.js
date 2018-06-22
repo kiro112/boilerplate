@@ -16,6 +16,7 @@ const logger = require('../helpers/logger');
  */
 exports.get_user = function (req, res, next) {
 
+    console.log('get user ~~~~ ');
 
     // res.data({ message: 'test12' }).send();
     res.send({ message: 'resp ~' });

@@ -13,6 +13,16 @@ const config = {
 
         PORT: 5000,
 
+        SALT: 'C19H39COOH',
+
+        SECRET: 's3cr3t',
+
+        ENCRYPT: 'aes192',
+
+        TOKEN_ALGO: 'HS256',
+
+        REDIS_PREFIX: 'redis_cdi:',
+
         CORS:  {
             allowed_headers: 'Access-Token, X-Requested-With, Content-Type, Accept',
             allowed_origins: '*',
@@ -28,12 +38,18 @@ const config = {
 
     // can be overridden by ${env}/database.js
     database: {
-        LOCAL_DB: {
+        cdi_db: {
             host: 'localhost',
             user: 'root',
             password: '',
-            database: 'test'
-        }
+            database: 'cdi_db'
+        },
+
+        redis: {
+            host: 'localhost',
+            port: 6379,
+            password: '*****'
+        },
     },
 
     use: (env) => {

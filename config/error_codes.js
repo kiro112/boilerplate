@@ -35,5 +35,25 @@ module.exports = {
         type: 'api_error',
         error_user_title: 'Error Title',
         error_user_msg: 'Error message'
+    },
+
+
+    MISSING_AUTH_TOKEN: {
+        status_code: 401,
+        code: 401,
+        message: 'Missing x-access-token',
+        type: 'AUTHENTICATION_ERROR',
+        error_user_title: 'Unauthorize access',
+        error_user_msg: 'Failed to access resouces'
+    },
+
+    AUTH_FAILED: {
+        status_code: 401,
+        code: 401,
+        message: 'Failed to validate token / Invalid token',
+        type: 'AUTHENTICATION_ERROR',
+        error_user_title: 'Unautorize access',
+        error_user_msg: 'Failed to authenticate token. Please re-login to continue.'
     }
+
 };

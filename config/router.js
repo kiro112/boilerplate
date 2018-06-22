@@ -9,8 +9,8 @@ module.exports = (router) => {
     router.del = router.delete;
 
 
-    router.get('/user/:id', logger, __.user.get_user);
-    router.post('/user/:id', logger, __.user.get_user);
+    router.get('/user/:id',     logger,         __.user.get_user);
+    router.post('/user/:id',    logger,         __.user.get_user);
 
     router.all('*', (req, res) => {
         res.status(404)
